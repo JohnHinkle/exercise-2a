@@ -44,13 +44,17 @@ glimpse(d)
 ```
 
 #### Head
+
 First 5 lines of data
+
 ```{r}
 head(d, 5)
 ```
 
 #### Tail
+
 Last 5 lines of data
+
 ```{r}
 tail(d, 5)
 ```
@@ -58,6 +62,7 @@ tail(d, 5)
 #### Group Size Data Exploration
 
 Method 1 (Vector)
+
 ```{r}
 gs <- d$MeanGroupSize
 class(gs)
@@ -83,8 +88,8 @@ sciname
 unique(d$Genus) # pull out all unique values
 ```
 
-
 Method 2 (Table)
+
 ```{r}
 gs <- d[, "MeanGroupSize"]
 class(gs)
@@ -92,3 +97,31 @@ head(gs)
 str(gs)
 ```
 
+### In-Class Exercise
+
+#### Load {tidyverse} and data
+
+```{r}
+library(tidyverse)
+f <- "/Users/jeh5663/Documents/data-wrangling.csv"
+d <- read_csv(f, col_names = TRUE)
+```
+
+#### Create female body mass and brain size objects
+
+```{r}
+bm <- d$Body_mass_female_mean
+bs <- d$Brain_Size_Species_Mean
+```
+
+#### Un-transformed plot
+
+```{r}
+plot(bm, bs)
+```
+
+#### Log transformed plot
+
+```{r}
+plot(log(bm), log(bs))
+```
