@@ -1,7 +1,7 @@
 ---
 title: "notes"
 author: "John Hinkle"
-date: "2025-01-21"
+date: "2025-01-23"
 output: html_document
 ---
 
@@ -9,10 +9,86 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Applied Data Analysis Notes
+# ADA Notes
 
-Notes text
+### Load in {tidyverse} and data
 
 ```{r}
-
+library(tidyverse)
+f <- "/Users/jeh5663/Documents/data-wrangling.csv"
+d <- read_csv(f, col_names = TRUE)
 ```
+
+### Exploring the data
+
+#### Class
+
+```{r}
+class(d)
+```
+
+#### Structure
+
+What type of data is in each column?
+
+```{r}
+str(d)
+```
+
+#### Glimpse
+
+Similar to str(), but a bit cleaner presentation
+
+```{r}
+glimpse(d)
+```
+
+#### Head
+First 5 lines of data
+```{r}
+head(d, 5)
+```
+
+#### Tail
+Last 5 lines of data
+```{r}
+tail(d, 5)
+```
+
+#### Group Size Data Exploration
+
+Method 1 (Vector)
+```{r}
+gs <- d$MeanGroupSize
+class(gs)
+head(gs)
+str(gs)
+```
+
+```{r}
+head(gs + 1) # Adds 1 to each group size
+
+#na.rm = TRUE removes NA/missing values 
+mean(gs, na.rm = TRUE) # mean
+sd(gs, na.rm = TRUE) # standard deviation
+```
+
+```{r}
+sciname <- paste0(d$Genus, " ", d$Species)
+sciname <- toupper(sciname) # change all letters to uppercase
+sciname
+```
+
+```{r}
+unique(d$Genus) # pull out all unique values
+```
+
+
+Method 2 (Table)
+```{r}
+gs <- d[, "MeanGroupSize"]
+class(gs)
+head(gs)
+str(gs)
+```
+
